@@ -69,9 +69,6 @@ namespace DataBlobStorageSample
             // Block blob basics
             Console.WriteLine("Skycast Analytics Deletion Task Runner \n");
             SkycastAnalyticsDeletionTaskAsync().Wait();
-
-            Console.WriteLine("Press any key to exit");
-            Console.ReadLine();
         }
 
         /// <summary>
@@ -122,8 +119,8 @@ namespace DataBlobStorageSample
                 Console.WriteLine("Total - {0} - vs To Be Deleted - {1}", resultSegment.Results.Count(), toBeDeleted.Count());
                 foreach (CloudBlockBlob blob in toBeDeleted)
                 {
-                    Console.WriteLine(" -   DELETING - {0} - LastModified: {1}", blob.Name, blob.Properties.LastModified.ToString());
                     await blob.DeleteAsync();
+                    Console.WriteLine(" -   DELETED - {0} - LastModified: {1}", blob.Name, blob.Properties.LastModified.ToString());
                 }
 
 
@@ -158,13 +155,11 @@ namespace DataBlobStorageSample
             catch (FormatException)
             {
                 Console.WriteLine("Invalid storage account information provided. Please confirm the AccountName and AccountKey are valid in the app.config file - then restart the sample.");
-                Console.ReadLine(); 
                 throw;
             }
             catch (ArgumentException)
             {
                 Console.WriteLine("Invalid storage account information provided. Please confirm the AccountName and AccountKey are valid in the app.config file - then restart the sample.");
-                Console.ReadLine();
                 throw;
             }
 

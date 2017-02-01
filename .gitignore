@@ -17,6 +17,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+.vs
+publish
+*.pfx
+
 # =========================
 # Operating System Files
 # =========================
